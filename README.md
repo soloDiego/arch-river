@@ -497,7 +497,88 @@ Update your River init file:
 - `-m center`: Centers the image without scaling
 - `-m tile`: Tiles the image to fill the screen
 
-## 6. Development Environment for C/C++ and Graphics
+## 6. File Explorer (PCManFM)
+
+### Installation
+
+```bash
+sudo pacman -S pcmanfm-gtk3 gvfs
+```
+
+### Configuration
+
+Add to your `~/.config/river/init`:
+```bash
+# File manager shortcut
+riverctl map normal Super e spawn pcmanfm
+```
+
+### Theming (Optional)
+
+Install themes:
+```bash
+sudo pacman -S arc-gtk-theme papirus-icon-theme
+```
+
+Create `~/.config/gtk-3.0/settings.ini`:
+```ini
+[Settings]
+gtk-theme-name=Arc-Dark
+gtk-icon-theme-name=Papirus-Dark
+gtk-font-name=Sans 11
+gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-size=24
+```
+
+### Usage
+
+- Press `Super+e` to open PCManFM
+- Use for file management, folder browsing, and accessing external devices
+- Right-click for context menu options
+
+## 7. Media Viewers
+
+### Installation
+
+```bash
+sudo pacman -S mpv imv
+```
+
+### File Associations
+
+Create or edit `~/.config/mimeapps.list`:
+```ini
+[Default Applications]
+image/jpeg=imv.desktop
+image/png=imv.desktop
+image/gif=imv.desktop
+video/mp4=mpv.desktop
+video/mkv=mpv.desktop
+audio/mp3=mpv.desktop
+audio/flac=mpv.desktop
+```
+
+### Add to River Init (Optional)
+
+```bash
+# Media player shortcut
+riverctl map normal Super v spawn mpv
+```
+
+### Usage
+
+- **imv**: Lightweight image viewer
+  - Navigate with arrow keys
+  - Zoom with +/- or mouse wheel
+  - Press 'f' for fullscreen
+
+- **mpv**: Versatile media player
+  - Space to pause/play
+  - Left/right arrows to seek
+  - Up/down arrows for volume
+  - 'f' for fullscreen
+
+## 8. Development Environment for C/C++ and Graphics
 
 ### Install Core Development Tools
 
@@ -601,6 +682,12 @@ riverctl map normal Super backslash spawn 'pamixer -t'
 
 # Launch audio mixer
 riverctl map normal Super a spawn 'pavucontrol'
+
+# File manager
+riverctl map normal Super e spawn pcmanfm
+
+# Media player shortcut (optional)
+riverctl map normal Super v spawn mpv
 
 # Tags (workspaces)
 for i in $(seq 1 9)
